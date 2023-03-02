@@ -2,7 +2,10 @@
 
 import cv2
 import numpy as np
-import win32gui, win32ui, win32con, win32api
+import win32gui
+import win32ui
+import win32con
+import win32api
 
 def grab_screen(region=None):
 
@@ -25,7 +28,7 @@ def grab_screen(region=None):
     bmp.CreateCompatibleBitmap(srcdc, width, height)
     memdc.SelectObject(bmp)
     memdc.BitBlt((0, 0), (width, height), srcdc, (left, top), win32con.SRCCOPY)
-    
+
     signedIntsArray = bmp.GetBitmapBits(True)
     img = np.fromstring(signedIntsArray, dtype='uint8')
     img.shape = (height,width,4)

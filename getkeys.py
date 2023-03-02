@@ -3,14 +3,13 @@
 import win32api as wapi
 import time
 
-keyList = ["\b"]
-for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ 123456789,.'£$/\\":
-    keyList.append(char)
+# keyList = range(256)
+keyList = (87,17,32,1,84)
 
 def key_check():
     keys = []
     for key in keyList:
-        if wapi.GetAsyncKeyState(ord(key)):
+        if wapi.GetAsyncKeyState(key):
             keys.append(key)
-    return keys
- 
+        mousex, mousey = wapi.GetCursorPos()
+    return keys, mousex
